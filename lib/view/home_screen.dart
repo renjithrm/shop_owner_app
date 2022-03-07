@@ -14,6 +14,7 @@ import 'package:showp_owner_app/view/widgets/bottom_navbar.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final _controller = Get.put(Controller());
+
   List<Widget> screens = [
     DashBoard(),
     NewOrderScreen(),
@@ -23,20 +24,28 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: appBarColor,
-          title: appTitle,
+      appBar: AppBar(
+        backgroundColor: appBarColor,
+        title: appTitle,
+      ),
+      // drawer: const DrawerItem(),
+      body: GetBuilder<Controller>(
+          id: "home",
+          builder: (_) {
+            return screens[_controller.index];
+          }),
+      bottomNavigationBar: GetBuilder<Controller>(
+          id: "navBar",
+          builder: (_) {
+            return BottomNavBar();
+          }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Container(
+          child: Text("Add Product"),
         ),
-        // drawer: const DrawerItem(),
-        body: GetBuilder<Controller>(
-            id: "home",
-            builder: (_) {
-              return screens[_controller.index];
-            }),
-        bottomNavigationBar: GetBuilder<Controller>(
-            id: "navBar",
-            builder: (_) {
-              return BottomNavBar();
-            }));
+        shape: RoundedRectangleBorder(),
+      ),
+    );
   }
 }
