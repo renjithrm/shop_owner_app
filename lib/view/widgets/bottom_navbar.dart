@@ -29,23 +29,35 @@ class BottomNavBar extends StatelessWidget {
         currentIndex: _controller.index,
         items: [
           BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.chartLine,
+              icon: Padding(
+                padding: const EdgeInsets.all(12),
+                child: FaIcon(
+                  FontAwesomeIcons.chartLine,
+                ),
               ),
               label: "Dashboard"),
           BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.plus,
+              icon: Padding(
+                padding: const EdgeInsets.all(12),
+                child: FaIcon(
+                  FontAwesomeIcons.swatchbook,
+                ),
               ),
               label: "New orders"),
           BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.shoppingBasket,
+              icon: Padding(
+                padding: const EdgeInsets.all(12),
+                child: FaIcon(
+                  FontAwesomeIcons.shoppingBasket,
+                ),
               ),
               label: "products"),
           BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.chartBar,
+              icon: Padding(
+                padding: const EdgeInsets.all(12),
+                child: FaIcon(
+                  FontAwesomeIcons.chartBar,
+                ),
               ),
               label: "report"),
         ]);

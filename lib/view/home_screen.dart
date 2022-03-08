@@ -1,11 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:showp_owner_app/controller/controller.dart';
 
 import 'package:showp_owner_app/helpers/const.dart';
 import 'package:showp_owner_app/view/screens/add_product.dart';
+import 'package:showp_owner_app/view/screens/add_prouct_details.dart';
 import 'package:showp_owner_app/view/screens/dashboard.dart';
 import 'package:showp_owner_app/view/screens/new_order_screen.dart';
 import 'package:showp_owner_app/view/screens/report.dart';
@@ -40,12 +42,21 @@ class HomeScreen extends StatelessWidget {
             return BottomNavBar();
           }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Container(
-          child: Text("Add Product"),
+        child: FaIcon(
+          FontAwesomeIcons.plus,
+          color: Colors.black,
+          size: 18,
         ),
-        shape: RoundedRectangleBorder(),
+        onPressed: () async {
+          await Get.to(AddProductDetails());
+        },
+        shape: RoundedRectangleBorder(
+          side: BorderSide(width: 2, color: Colors.green),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        backgroundColor: Colors.white,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

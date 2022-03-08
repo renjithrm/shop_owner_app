@@ -33,9 +33,13 @@ Widget columDiv(double size) => SizedBox(
       height: size,
     );
 //form field in login page.
-Widget forms(String labelText, TextEditingController controller) => Padding(
+Widget forms(String labelText, TextEditingController controller,
+        String? Function(String?)? validator,
+        [Widget? prefix]) =>
+    Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 12),
       child: TextFormField(
+        validator: validator,
         controller: controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -43,6 +47,7 @@ Widget forms(String labelText, TextEditingController controller) => Padding(
           ),
           labelText: labelText,
           labelStyle: GoogleFonts.roboto(),
+          prefix: prefix,
         ),
       ),
     );

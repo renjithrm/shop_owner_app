@@ -12,7 +12,7 @@ class ProductScreen extends StatelessWidget {
       child: ListView.separated(
           itemBuilder: (context, index) => const AddProductCard(),
           separatorBuilder: (context, index) => columDiv(10),
-          itemCount: 10),
+          itemCount: 3),
     );
   }
 }

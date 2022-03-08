@@ -34,10 +34,12 @@ class LoginScreen extends StatelessWidget {
             forms(
               "Store name",
               storeName,
+              (value) => null,
             ),
             forms(
               "Password",
               password,
+              (value) => null,
             ),
             columDiv(20),
             submitButton(
