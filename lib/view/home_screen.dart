@@ -15,7 +15,7 @@ import 'package:showp_owner_app/view/widgets/bottom_navbar.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
-  final _controller = Get.put(Controller());
+  final _controller = Get.find<Controller>();
 
   List<Widget> screens = [
     DashBoard(),
@@ -29,6 +29,15 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: appBarColor,
         title: appTitle,
+        actions: [
+          IconButton(
+              onPressed: () {
+                // print(_size.height);
+              },
+              icon: FaIcon(
+                Icons.settings,
+              ))
+        ],
       ),
       // drawer: const DrawerItem(),
       body: GetBuilder<Controller>(

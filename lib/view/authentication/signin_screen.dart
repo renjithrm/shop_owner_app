@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:showp_owner_app/controller/controller.dart';
 import 'package:showp_owner_app/helpers/const.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -14,70 +16,71 @@ class SignInScreen extends StatelessWidget {
   final conformPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: appBarColor,
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: padding,
-        child: SingleChildScrollView(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                titleText("Sell your Products on Dunzo"),
-                columDiv(10),
-                text("Create new Account", 18),
-                forms(
-                  "First name",
-                  firstName,
-                  (value) => null,
-                ),
-                forms(
-                  "Last name",
-                  lastName,
-                  (value) => null,
-                ),
-                forms(
-                  "Store name",
-                  storeName,
-                  (value) => null,
-                ),
-                forms(
-                  "City",
-                  cityName,
-                  (value) => null,
-                ),
-                forms(
-                  "Add location",
-                  location,
-                  (value) => null,
-                ),
-                forms(
-                  "Email",
-                  email,
-                  (value) => null,
-                ),
-                forms(
-                  "Phone no",
-                  phoneNumber,
-                  (value) => null,
-                ),
-                forms(
-                  "Password",
-                  password,
-                  (value) => null,
-                ),
-                forms(
-                  "Confirm Password",
-                  conformPassword,
-                  (value) => null,
-                ),
-                columDiv(20),
-                submitButton(onPressed: () {}, buttonText: "Submit")
-              ]),
-        ),
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      padding: padding,
+      child: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              titleText("Sell your Products on Dunzo"),
+              columDiv(10),
+              text("Create new Account", 18),
+              forms(
+                "First name",
+                firstName,
+                (value) => null,
+              ),
+              forms(
+                "Last name",
+                lastName,
+                (value) => null,
+              ),
+              forms(
+                "Store name",
+                storeName,
+                (value) => null,
+              ),
+              forms(
+                "City",
+                cityName,
+                (value) => null,
+              ),
+              forms(
+                "Add location",
+                location,
+                (value) => null,
+              ),
+              forms(
+                "Email",
+                email,
+                (value) => null,
+              ),
+              forms(
+                "Phone no",
+                phoneNumber,
+                (value) => null,
+              ),
+              forms(
+                "Password",
+                password,
+                (value) => null,
+              ),
+              forms(
+                "Confirm Password",
+                conformPassword,
+                (value) => null,
+              ),
+              columDiv(20),
+              submitButton(onPressed: () {}, buttonText: "Submit"),
+              TextButton(
+                onPressed: () {
+                  Get.find<Controller>().toggleScreens();
+                },
+                child: const Text("Already have an acount"),
+              )
+            ]),
       ),
     );
   }
