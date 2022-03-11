@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:showp_owner_app/controller/controller.dart';
 import 'package:showp_owner_app/view/authentication/wraper.dart';
 import 'package:showp_owner_app/view/home_screen.dart';
+import 'package:showp_owner_app/view/screens/settings_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,13 +21,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       routes: {
-        "/home": (cntx) => HomeScreen(),
-        "/switch": (cnt) => WarperAuth(),
+        "/switch": (BuildContext ctx) => WarperAuth(),
+        "/home": (BuildContext ctx) => HomeScreen(),
+        "/settings": (BuildContext ctx) => const SettingScreen(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: SignInScreen(),
       initialRoute: "/switch",
     );
   }

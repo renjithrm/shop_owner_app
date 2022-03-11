@@ -31,8 +31,9 @@ class HomeScreen extends StatelessWidget {
         title: appTitle,
         actions: [
           IconButton(
-              onPressed: () {
-                // print(_size.height);
+              onPressed: () async {
+                await Navigator.pushNamed(context, "/settings");
+                print(context.widget);
               },
               icon: FaIcon(
                 Icons.settings,

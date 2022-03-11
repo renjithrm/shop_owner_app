@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.1
   font_awesome_flutter: ^9.2.0
   image_picker: ^0.8.4+10
+  fl_chart: ^0.45.1
 
 dev_dependencies:
   flutter_test:
