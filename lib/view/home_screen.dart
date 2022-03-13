@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:showp_owner_app/controller/controller.dart';
 
 import 'package:showp_owner_app/helpers/const.dart';
@@ -16,6 +18,7 @@ import 'package:showp_owner_app/view/widgets/bottom_navbar.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final _controller = Get.find<Controller>();
+  bool isScroling = true;
 
   List<Widget> screens = [
     DashBoard(),
@@ -33,7 +36,6 @@ class HomeScreen extends StatelessWidget {
           IconButton(
               onPressed: () async {
                 await Navigator.pushNamed(context, "/settings");
-                print(context.widget);
               },
               icon: FaIcon(
                 Icons.settings,
@@ -44,29 +46,57 @@ class HomeScreen extends StatelessWidget {
       body: GetBuilder<Controller>(
           id: "home",
           builder: (_) {
-            return screens[_controller.index];
+            // hide floatingaction button
+            return NotificationListener<UserScrollNotification>(
+              onNotification: (notification) {
+                if (notification.direction == ScrollDirection.reverse) {
+                  _controller.isVisible = false;
+                  _controller.update(["hideFloat"]);
+                } else if (notification.direction == ScrollDirection.forward) {
+                  _controller.isVisible = true;
+                  _controller.update(["hideFloat"]);
+                }
+                return true;
+              },
+              child: screens[_controller.index],
+            );
           }),
       bottomNavigationBar: GetBuilder<Controller>(
           id: "navBar",
           builder: (_) {
             return BottomNavBar();
           }),
-      floatingActionButton: FloatingActionButton(
-        child: FaIcon(
-          FontAwesomeIcons.plus,
-          color: Colors.black,
-          size: 18,
-        ),
-        onPressed: () async {
-          await Get.to(AddProductDetails());
+      floatingActionButton: GetBuilder<Controller>(
+        id: "hideFloat",
+        builder: (_) {
+          return _controller.isVisible
+              ? FloatingActionButton.extended(
+                  label: Text(
+                    "Add product",
+                    style: GoogleFonts.roboto(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  icon: FaIcon(
+                    FontAwesomeIcons.plus,
+                    color: Colors.black,
+                    size: 18,
+                  ),
+                  onPressed: () async {
+                    await Get.to(AddProductDetails());
+                  },
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 2, color: Colors.green),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: Colors.white,
+                )
+              : Container();
         },
-        shape: RoundedRectangleBorder(
-          side: BorderSide(width: 2, color: Colors.green),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        backgroundColor: Colors.white,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Color appBarColor = const Color(0xff008352);
@@ -94,3 +95,59 @@ Widget drawerButton({
       title: title,
       onTap: onTap,
     );
+// bottom sheet
+showBottomSheets({
+  void Function()? onTapCamera,
+  void Function()? onTapGallery,
+}) async {
+  return await Get.bottomSheet(
+    Container(
+      padding: padding,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        color: Colors.white,
+      ),
+      height: 150,
+      child: Row(
+        children: <Widget>[
+          GestureDetector(
+            onTap: onTapCamera,
+            child: Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.green,
+              ),
+              child: const Center(
+                child: FaIcon(FontAwesomeIcons.camera),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          GestureDetector(
+            onTap: onTapGallery,
+            child: Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.green,
+              ),
+              child: const Center(
+                child: FaIcon(FontAwesomeIcons.image),
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}

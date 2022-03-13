@@ -10,7 +10,7 @@ class AddProductCard extends StatelessWidget {
     return Card(
       child: Container(
         padding: padding,
-        height: 200,
+        height: 210,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -40,10 +40,11 @@ class AddProductCard extends StatelessWidget {
                                             ? appBarColor
                                             : Colors.deepPurple)),
                             onPressed: () {},
-                            child: Text("Add")),
+                            child: const Text("Add")),
                       ))
                 ],
               ),
+              columDiv(20),
               Row(
                 children: <Widget>[
                   const Spacer(),
@@ -55,7 +56,8 @@ class AddProductCard extends StatelessWidget {
                       onPressed: () {},
                       icon: const FaIcon(
                         FontAwesomeIcons.trash,
-                      ))
+                      )),
+                  const Spacer(),
                 ],
               )
             ]),

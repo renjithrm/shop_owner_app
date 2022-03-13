@@ -17,47 +17,45 @@ class SettingScreen extends StatelessWidget {
       body: Padding(
         padding: padding,
         child: Column(children: <Widget>[
-          profileTail(),
+          tail(
+            "Profile",
+            FontAwesomeIcons.user,
+            () {},
+          ),
           columDiv(10),
-          logOutTail(),
+          tail(
+            "Log Out",
+            FontAwesomeIcons.signOutAlt,
+            () {},
+          ),
+          columDiv(10),
+          tail(
+            "About",
+            FontAwesomeIcons.exclamation,
+            () {},
+          ),
         ]),
       ),
     );
   }
 
-  Widget profileTail() {
+  Widget tail(
+    String title,
+    IconData icon,
+    void Function()? onTap,
+  ) {
     return ListTile(
-      onTap: () {},
-      leading: const CircleAvatar(
+      onTap: onTap,
+      leading: CircleAvatar(
         backgroundColor: Colors.grey,
-        radius: 27,
+        radius: 23,
         child: FaIcon(
-          FontAwesomeIcons.user,
+          icon,
           color: Colors.black,
         ),
       ),
       title: Text(
-        "Profile",
-        style: GoogleFonts.roboto(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  Widget logOutTail() {
-    return ListTile(
-      onTap: () {},
-      leading: const CircleAvatar(
-        backgroundColor: Colors.grey,
-        radius: 27,
-        child: FaIcon(
-          FontAwesomeIcons.signOutAlt,
-          color: Colors.black,
-        ),
-      ),
-      title: Text(
-        "Log out",
+        title,
         style: GoogleFonts.roboto(
           fontWeight: FontWeight.bold,
         ),

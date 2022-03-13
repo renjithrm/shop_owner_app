@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:showp_owner_app/controller/controller.dart';
 import 'package:showp_owner_app/helpers/const.dart';
 
@@ -15,14 +18,22 @@ class AddProductDetails extends StatelessWidget {
   final amount = TextEditingController();
   final itemPrice = TextEditingController();
   final expiryDate = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     List<String> items = [
       "Kg",
       "gm",
+      "amount",
+      "ml",
     ];
-    List<String> itemDate = ["month", "year"];
+    List<String> itemDate = [
+      "month",
+      "year",
+      "week",
+      "day",
+    ];
     return Scaffold(
       // backgroundColor: Colors.black,
       appBar: AppBar(
@@ -57,7 +68,7 @@ class AddProductDetails extends StatelessWidget {
                     ),
                   ),
                   padding: EdgeInsets.all(7),
-                  width: 80,
+                  width: 100,
                   height: 40,
                   child: GetBuilder<Controller>(
                     id: "drop",
@@ -167,7 +178,57 @@ class AddProductDetails extends StatelessWidget {
               maxLines: 5,
             ),
             columDiv(20),
-            Container(
+            Row(
+              children: [
+                GetBuilder<Controller>(
+                  id: "image",
+                  builder: (_) {
+                    return _controller.imageList.length <= 2
+                        ? imageAddButton()
+                        : Container();
+                  },
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                GetBuilder<Controller>(
+                  id: "image",
+                  builder: (_) {
+                    if (_controller.imageList.isNotEmpty) {
+                      return Container(
+                        height: 80,
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            File file = _controller.imageList[index].image;
+                            return Image.file(
+                              file,
+                              width: 80,
+                              height: 80,
+                            );
+                            // return Container(
+                            //   color: Colors.red,
+                            //   width: 20,
+                            //   height: 80,
+                            // );
+                          },
+                          separatorBuilder: (context, index) => SizedBox(
+                            width: 10,
+                          ),
+                          itemCount: _controller.imageList.length,
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
+              ],
+            ),
+            columDiv(20),
+            SizedBox(
               width: 200,
               height: 50,
               child: ElevatedButton(
@@ -194,10 +255,33 @@ class AddProductDetails extends StatelessWidget {
                       fontSize: 20,
                     ),
                   )),
-            )
+            ),
           ]),
         ),
       ),
     );
   }
+
+  //image add button
+  Widget imageAddButton() => GestureDetector(
+        onTap: () => showBottomSheets(onTapCamera: () {
+          _controller.pickImage(ImageSource.camera);
+          Get.back();
+        }, onTapGallery: () {
+          _controller.pickImage(ImageSource.gallery);
+          Get.back();
+        }),
+        child: Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black,
+              ),
+              borderRadius: BorderRadius.circular(10)),
+          child: Center(
+            child: FaIcon(FontAwesomeIcons.plus),
+          ),
+        ),
+      );
 }
