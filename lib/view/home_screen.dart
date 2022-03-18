@@ -13,6 +13,7 @@ import 'package:showp_owner_app/view/screens/add_prouct_details.dart';
 import 'package:showp_owner_app/view/screens/dashboard.dart';
 import 'package:showp_owner_app/view/screens/new_order_screen.dart';
 import 'package:showp_owner_app/view/screens/report.dart';
+import 'package:showp_owner_app/view/screens/settings_screen.dart';
 import 'package:showp_owner_app/view/widgets/bottom_navbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
     DashBoard(),
     NewOrderScreen(),
     ProductScreen(),
-    ReportScreen(),
+    SettingScreen()
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,15 +33,15 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: appBarColor,
         title: appTitle,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                await Navigator.pushNamed(context, "/settings");
-              },
-              icon: FaIcon(
-                Icons.settings,
-              ))
-        ],
+        // actions: [
+        // IconButton(
+        //     onPressed: () async {
+        //       await Navigator.pushNamed(context, "/settings");
+        //     },
+        //     icon: FaIcon(
+        //       Icons.settings,
+        //     ))
+        //  ],
       ),
       // drawer: const DrawerItem(),
       body: GetBuilder<Controller>(

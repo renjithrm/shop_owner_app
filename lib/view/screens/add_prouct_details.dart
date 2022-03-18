@@ -47,16 +47,16 @@ class AddProductDetails extends StatelessWidget {
         padding: padding,
         child: SingleChildScrollView(
           child: Column(children: <Widget>[
-            forms(
-              "Product name",
-              products,
-              (value) => null,
-            ),
-            forms(
-              "Category",
-              category,
-              (value) => null,
-            ),
+            // forms(
+            //   "Product name",
+            //   products,
+            //   (value) => null,
+            // ),
+            // forms(
+            //   "Category",
+            //   category,
+            //   (value) => null,
+            // ),
             Row(
               children: <Widget>[
                 Container(
@@ -110,14 +110,11 @@ class AddProductDetails extends StatelessWidget {
               ],
             ),
             columDiv(10),
-            forms(
-                "price",
-                itemPrice,
-                (value) => null,
-                FaIcon(
-                  FontAwesomeIcons.rupeeSign,
-                  size: 18,
-                )),
+            // forms("price", itemPrice, (value) => null,
+            //     prefix: FaIcon(
+            //       FontAwesomeIcons.rupeeSign,
+            //       size: 18,
+            //     )),
             Row(
               children: <Widget>[
                 Container(
@@ -208,11 +205,6 @@ class AddProductDetails extends StatelessWidget {
                               width: 80,
                               height: 80,
                             );
-                            // return Container(
-                            //   color: Colors.red,
-                            //   width: 20,
-                            //   height: 80,
-                            // );
                           },
                           separatorBuilder: (context, index) => SizedBox(
                             width: 10,

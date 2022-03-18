@@ -56,10 +56,10 @@ class BottomNavBar extends StatelessWidget {
               icon: Padding(
                 padding: const EdgeInsets.all(12),
                 child: FaIcon(
-                  FontAwesomeIcons.chartBar,
+                  Icons.settings,
                 ),
               ),
-              label: "report"),
+              label: "settings"),
         ]);
   }
 }

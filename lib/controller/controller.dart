@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
@@ -13,6 +14,16 @@ class Controller extends GetxController {
   final _picker = ImagePicker();
   File? image;
   var imageList = <ImageModel>[];
+  //sent to api
+  String? profilePic;
+  //display in phone
+  File? profileImage;
+  bool obscureText = true;
+  changeVisiblity() {
+    obscureText = !obscureText;
+    update(["passIcon"]);
+  }
+
   toggleScreens() {
     isloginOrSignin = !isloginOrSignin;
     update(["toggle"]);
@@ -24,7 +35,21 @@ class Controller extends GetxController {
     if (img == null) return;
     image = File(img.path);
     imageList.add(ImageModel(image: image!));
-    print(imageList);
+
     update(["image"]);
+  }
+
+  takeProfilePic(ImageSource source) async {
+    try {
+      var image = await _picker.pickImage(source: source);
+      if (image != null) {
+        profileImage = File(image.path);
+        var pic = profileImage!.readAsBytesSync();
+
+        profilePic = base64Encode(pic);
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }
