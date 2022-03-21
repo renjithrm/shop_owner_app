@@ -15,7 +15,7 @@ class ApiServics {
     try {
       response = await _dio.get(url);
       if (response.statusCode == 200) {
-        print(response.data);
+        return response.data;
       }
     } catch (e) {
       print(e);
@@ -34,7 +34,7 @@ class ApiServics {
       }
     } on DioError catch (e) {
       if (e.type == DioErrorType.response) {
-        print("enter unique name and email");
+        print(e.type);
       }
     } catch (e) {
       print(e);

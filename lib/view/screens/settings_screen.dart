@@ -9,38 +9,39 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-        // Scaffold(
-        //   appBar: AppBar(
-        //     backgroundColor: appBarColor,
-        //     title: const Text("Settings"),
-        //     centerTitle: true,
-        //   ),
-        Container(
-      child: Padding(
-          padding: padding,
-          child: Column(children: <Widget>[
-            tail(
-              "Profile",
-              FontAwesomeIcons.user,
-              () {},
-            ),
-            columDiv(10),
-            tail(
-              "Log Out",
-              FontAwesomeIcons.signOutAlt,
-              () async {
-                await SaveId.delectId();
-                Navigator.of(context).pushReplacementNamed("/switch");
-              },
-            ),
-            columDiv(10),
-            tail(
-              "About",
-              FontAwesomeIcons.exclamation,
-              () {},
-            ),
-          ])),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: appBarColor,
+        title: const Text("Settings"),
+        centerTitle: true,
+      ),
+      body: Container(
+        child: Padding(
+            padding: padding,
+            child: Column(children: <Widget>[
+              tail(
+                "Profile",
+                FontAwesomeIcons.user,
+                () {},
+              ),
+              columDiv(10),
+              tail(
+                "Log Out",
+                FontAwesomeIcons.signOutAlt,
+                () async {
+                  await SaveId.delectId();
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil("/switch", (route) => false);
+                },
+              ),
+              columDiv(10),
+              tail(
+                "About",
+                FontAwesomeIcons.exclamation,
+                () {},
+              ),
+            ])),
+      ),
     );
   }
 

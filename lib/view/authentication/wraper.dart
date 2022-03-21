@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:showp_owner_app/controller/api_controller.dart';
 import 'package:showp_owner_app/controller/controller.dart';
 import 'package:showp_owner_app/helpers/const.dart';
-import 'package:showp_owner_app/models/store_signup_model.dart';
 import 'package:showp_owner_app/view/authentication/login_screen.dart';
 import 'package:showp_owner_app/view/authentication/signin_screen.dart';
 

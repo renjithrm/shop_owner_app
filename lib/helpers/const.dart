@@ -53,7 +53,7 @@ Widget forms(String labelText, TextEditingController controller,
         obscureText: obscureText ??= false,
         decoration: InputDecoration(
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(200),
           ),
           labelText: labelText,
           labelStyle: GoogleFonts.roboto(),

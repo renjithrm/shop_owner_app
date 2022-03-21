@@ -6,14 +6,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:showp_owner_app/controller/controller.dart';
+import 'package:showp_owner_app/controller/get_all_products_controller.dart';
 
 import 'package:showp_owner_app/helpers/const.dart';
-import 'package:showp_owner_app/view/screens/add_product.dart';
+import 'package:showp_owner_app/view/screens/product_screen.dart';
 import 'package:showp_owner_app/view/screens/add_prouct_details.dart';
 import 'package:showp_owner_app/view/screens/dashboard.dart';
 import 'package:showp_owner_app/view/screens/new_order_screen.dart';
 import 'package:showp_owner_app/view/screens/report.dart';
-import 'package:showp_owner_app/view/screens/settings_screen.dart';
 import 'package:showp_owner_app/view/widgets/bottom_navbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,11 +21,13 @@ class HomeScreen extends StatelessWidget {
   final _controller = Get.find<Controller>();
   bool isScroling = true;
 
+  final _getProductsController = Get.put(GetProductController());
+
   List<Widget> screens = [
     DashBoard(),
     NewOrderScreen(),
     ProductScreen(),
-    SettingScreen()
+    ReportScreen()
   ];
   @override
   Widget build(BuildContext context) {
@@ -33,15 +35,15 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: appBarColor,
         title: appTitle,
-        // actions: [
-        // IconButton(
-        //     onPressed: () async {
-        //       await Navigator.pushNamed(context, "/settings");
-        //     },
-        //     icon: FaIcon(
-        //       Icons.settings,
-        //     ))
-        //  ],
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await Navigator.of(context).pushNamed("/settings");
+              },
+              icon: FaIcon(
+                Icons.settings,
+              ))
+        ],
       ),
       // drawer: const DrawerItem(),
       body: GetBuilder<Controller>(

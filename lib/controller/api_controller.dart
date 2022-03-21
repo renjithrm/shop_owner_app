@@ -26,6 +26,7 @@ class ApiController extends GetxController {
     required String phonenumber,
     required String password,
   }) async {
+    isLoading = true;
     var profileImage;
     int phoneNo = int.parse(phonenumber);
     if (_controller.profilePic == null) {
@@ -51,9 +52,11 @@ class ApiController extends GetxController {
     print(response);
     if (response == null) {
       storeResponseSignIn == null;
+      isLoading = false;
       return null;
     } else {
       storeResponseSignIn = signInResponseFromJson(response);
+      isLoading = true;
       return storeResponseSignIn;
     }
   }
@@ -68,6 +71,7 @@ class ApiController extends GetxController {
       print(loginResponse);
     } else {
       loginResponse = null;
+      isLoading = false;
       return null;
     }
     await SaveId.saveId(loginResponse!.id);

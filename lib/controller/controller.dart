@@ -9,6 +9,7 @@ class Controller extends GetxController {
   int index = 0;
   String value = "Kg";
   String itemDate = "month";
+  String? itemscategorys;
   bool isloginOrSignin = true;
   bool isVisible = true;
   final _picker = ImagePicker();
@@ -51,5 +52,12 @@ class Controller extends GetxController {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<String> convertImage(File image) async {
+    var productImage = image.readAsBytesSync();
+    var baseImage = base64Encode(productImage);
+
+    return baseImage;
   }
 }
