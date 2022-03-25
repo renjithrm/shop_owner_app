@@ -1,19 +1,26 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:showp_owner_app/helpers/api_servics_links.dart';
 import 'package:showp_owner_app/helpers/const.dart';
 import 'package:showp_owner_app/models/store_add_product_model.dart';
 import 'package:showp_owner_app/services/api_service.dart';
+import 'package:showp_owner_app/services/shared_preference.dart';
 
-class AddProductController extends GetxController {
+class EditProductController extends GetxController {
   final _apiLink = ApiLink();
   final _apiSetvice = ApiServics();
-  bool isLording = false;
 
-// add product to server
-  Future addProduct({
+  Future delectProduct({required String productId}) async {
+    String storeId = SaveId.getId();
+    var response = await _apiSetvice
+        .delectRequst("${_apiLink.STORE_ADD_PRODUCT}/$storeId/$productId");
+    if (response == null) return;
+    print('response::$response');
+  }
+
+  Future editProduct({
     required String storeId,
     required String prouctName,
     required String unit,
@@ -27,9 +34,9 @@ class AddProductController extends GetxController {
     String? image2,
     String? image3,
     required BuildContext context,
+    required String productId,
   }) async {
-    print("id $storeId");
-    var productDetails = StoreAddProductModel(
+    var userData = storeAddProductModelToJson(StoreAddProductModel(
       storeid: storeId,
       productname: prouctName,
       unit: unit,
@@ -42,21 +49,20 @@ class AddProductController extends GetxController {
       image1: logo,
       image2: logo,
       image3: logo,
-    );
-    isLording = true;
-    var productDetailsToJson = storeAddProductModelToJson(productDetails);
+    ));
 
-    var response = await _apiSetvice.postData(
-        _apiLink.STORE_ADD_PRODUCT, productDetailsToJson);
+    var response = await _apiSetvice.updateDetails(
+      "${_apiLink.STORE_ADD_PRODUCT}/$storeId/$productId",
+      userData,
+    );
+    if (response == null) return;
 
     if (response != null) {
       var responseMessage = jsonDecode(response);
-      isLording = false;
 
       Navigator.of(context).pop();
       return responseMessage;
     }
-
-    isLording = false;
+    print(response);
   }
 }

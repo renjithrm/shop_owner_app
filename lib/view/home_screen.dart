@@ -9,6 +9,7 @@ import 'package:showp_owner_app/controller/controller.dart';
 import 'package:showp_owner_app/controller/get_all_products_controller.dart';
 
 import 'package:showp_owner_app/helpers/const.dart';
+import 'package:showp_owner_app/helpers/enum_class.dart';
 import 'package:showp_owner_app/view/screens/product_screen.dart';
 import 'package:showp_owner_app/view/screens/add_prouct_details.dart';
 import 'package:showp_owner_app/view/screens/dashboard.dart';
@@ -87,7 +88,9 @@ class HomeScreen extends StatelessWidget {
                     size: 18,
                   ),
                   onPressed: () async {
-                    await Get.to(AddProductDetails());
+                    await Get.to(AddProductDetails(
+                      screen: Screens.add,
+                    ));
                   },
                   shape: RoundedRectangleBorder(
                     side: BorderSide(width: 2, color: Colors.green),

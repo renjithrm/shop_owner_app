@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:showp_owner_app/controller/edit_product_controller.dart';
+import 'package:showp_owner_app/controller/get_all_products_controller.dart';
 import 'package:showp_owner_app/helpers/const.dart';
-import 'package:showp_owner_app/models/all_product_model.dart';
+import 'package:showp_owner_app/helpers/enum_class.dart';
+import 'package:showp_owner_app/view/screens/add_prouct_details.dart';
 
 class ProductCard extends StatelessWidget {
-  List<Product> products;
+  List<dynamic> products;
   int index;
 
   ProductCard({Key? key, required this.products, required this.index})
       : super(key: key);
+
+  final _editProduct = Get.put(EditProductController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +27,13 @@ class ProductCard extends StatelessWidget {
             children: <Widget>[
               rowItems(
                   fristName: "Item ",
-                  secondName: products[index].productname ?? "error"),
+                  secondName: products[index]['productname'] ?? "error"),
               rowItems(
                   fristName: "Stock left",
-                  secondName: products[index].units.toString()),
+                  secondName: products[index]['units'].toString()),
               rowItems(
                   fristName: "Price",
-                  secondName: products[index].amount.toString()),
+                  secondName: products[index]['amount'].toString()),
               Row(
                 children: <Widget>[
                   text("Add quantity", 16, Colors.black),
@@ -60,11 +66,24 @@ class ProductCard extends StatelessWidget {
                 children: <Widget>[
                   const Spacer(),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(AddProductDetails(
+                          screen: Screens.edit,
+                          product: products,
+                          index: index,
+                        ));
+                      },
                       icon: const FaIcon(FontAwesomeIcons.edit)),
                   const Spacer(),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await _editProduct.delectProduct(
+                            productId: products[index]['_id']);
+                        Get.find<GetProductController>().update(["getProduct"]);
+
+                        Get.snackbar(products[index]['productname'],
+                            "product deleted successfully");
+                      },
                       icon: const FaIcon(
                         FontAwesomeIcons.trash,
                       )),
