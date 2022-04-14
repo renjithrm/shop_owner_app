@@ -14,7 +14,7 @@ final requriedValidation =
     RequiredValidator(errorText: "This field is requried");
 
 Text appTitle = Text(
-  "Dunzo",
+  "G-shope",
   style: GoogleFonts.roboto(
     fontWeight: FontWeight.bold,
   ),
@@ -38,16 +38,21 @@ Widget columDiv(double size) => SizedBox(
       height: size,
     );
 //form field in login page.
-Widget forms(String labelText, TextEditingController controller,
-        {String? Function(String?)? validator,
-        Widget? prefix,
-        Widget? suffix,
-        bool? obscureText,
-        TextInputType? keyboardType}) =>
+Widget forms(
+  String labelText,
+  TextEditingController controller, {
+  String? Function(String?)? validator,
+  Widget? prefix,
+  Widget? suffix,
+  bool? obscureText,
+  TextInputType? keyboardType,
+  void Function(String)? onChanged,
+}) =>
     Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 12),
       child: TextFormField(
         validator: validator,
+        onChanged: onChanged,
         controller: controller,
         keyboardType: keyboardType,
         obscureText: obscureText ??= false,

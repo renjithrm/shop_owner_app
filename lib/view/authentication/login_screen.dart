@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    Size _size = MediaQuery.of(context).size;
     return _apiController.isLoading
         ? const Loading()
         : Container(
@@ -34,7 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
               key: _formKey,
               child: Column(children: <Widget>[
                 SizedBox(
-                    height: !widget.isKeybordVisible ? 300 : 50,
+                    height: !widget.isKeybordVisible
+                        ? _size.height * 0.4
+                        : _size.height * 0.03,
                     child: !widget.isKeybordVisible
                         ? Image(
                             image: AssetImage(loginImage),
@@ -79,8 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             )),
                       );
                     }),
-                columDiv(10),
-                columDiv(20),
+                const Spacer(),
                 submitButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
@@ -97,11 +99,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   buttonText: "Submit",
                 ),
-                TextButton(
-                    onPressed: () {
-                      Get.find<Controller>().toggleScreens();
-                    },
-                    child: const Text("Create an acount"))
+                !widget.isKeybordVisible
+                    ? TextButton(
+                        onPressed: () {
+                          Get.find<Controller>().toggleScreens();
+                        },
+                        child: const Text("Create an acount"))
+                    : Container()
               ]),
             ),
           );

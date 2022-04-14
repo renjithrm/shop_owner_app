@@ -13,23 +13,25 @@ class DashBoard extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       padding: padding,
-      child: Column(
-        children: <Widget>[
-          Container(
-              // color: Colors.amber,
-              height: 300,
-              child: PieChart(
-                PieChartData(
-                  sections: sectionData(),
-                  sectionsSpace: 0,
-                  centerSpaceRadius: 60,
-                ),
-                swapAnimationCurve: Curves.easeInOutCirc,
-                swapAnimationDuration: const Duration(seconds: 3),
-              )),
-          columDiv(10),
-          showIdicators(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+                // color: Colors.amber,
+                height: 300,
+                child: PieChart(
+                  PieChartData(
+                    sections: sectionData(),
+                    sectionsSpace: 0,
+                    centerSpaceRadius: 60,
+                  ),
+                  swapAnimationCurve: Curves.easeInOutCirc,
+                  swapAnimationDuration: const Duration(seconds: 3),
+                )),
+            columDiv(10),
+            showIdicators(),
+          ],
+        ),
       ),
     );
   }

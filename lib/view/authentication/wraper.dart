@@ -17,12 +17,6 @@ class WarperAuth extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: appBarColor,
-          actions: [
-            IconButton(
-              onPressed: () async {},
-              icon: Icon(Icons.settings),
-            )
-          ],
         ),
         body: GetBuilder<Controller>(
           id: "toggle",

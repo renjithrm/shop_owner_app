@@ -271,13 +271,13 @@ class _AddProductDetailsState extends State<AddProductDetails> {
                         if (_formKey.currentState!.validate() &&
                             _controller.imageList.isNotEmpty) {
                           var id = SaveId.getId();
-                          String image1 = await _controller
+                          var image1 = await _controller
                               .convertImage(_controller.imageList[0].image);
                           // print("image1::$image1");
-                          String image2 = await _controller
+                          var image2 = await _controller
                               .convertImage(_controller.imageList[1].image);
                           // print("image2::$image2");
-                          String? image3 = await _controller
+                          var image3 = await _controller
                               .convertImage(_controller.imageList[2].image);
                           // print("image3::$image3");
 
@@ -292,9 +292,9 @@ class _AddProductDetailsState extends State<AddProductDetails> {
                                 category: _controller.itemscategorys!,
                                 units: int.parse(units.text),
                                 description: productDiscription.text,
-                                image1: image1,
-                                image2: image2,
-                                image3: image3,
+                                image1: logo,
+                                image2: logo,
+                                image3: logo,
                                 context: context);
                             _controller.imageList.clear();
                             Get.snackbar(products.text, result["msg"]);

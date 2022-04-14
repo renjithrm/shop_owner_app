@@ -54,10 +54,10 @@ class Controller extends GetxController {
     }
   }
 
-  Future<String> convertImage(File image) async {
+  Future convertImage(File image) async {
     var productImage = image.readAsBytesSync();
-    var baseImage = base64Encode(productImage);
+    // var baseImage = base64Encode(productImage);
 
-    return baseImage;
+    return productImage;
   }
 }

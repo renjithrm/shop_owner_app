@@ -39,9 +39,9 @@ class AddProductController extends GetxController {
       category: category,
       units: units,
       description: description,
-      image1: logo,
-      image2: logo,
-      image3: logo,
+      image1: image1,
+      image2: image2,
+      image3: image3,
     );
     isLording = true;
     var productDetailsToJson = storeAddProductModelToJson(productDetails);

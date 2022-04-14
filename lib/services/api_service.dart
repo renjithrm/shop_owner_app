@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:dio/dio.dart';
+
 import 'package:showp_owner_app/helpers/api_servics_links.dart';
 
 class ApiServics {
@@ -105,17 +106,17 @@ class ApiServics {
       }
     } on DioError catch (err) {
       if (err.type == DioErrorType.response) {
-        print("response${err.message}");
+        print("response::${err.message}");
       } else if (err.type == DioErrorType.cancel) {
-        print("cancel${err.message}");
+        print("cancel::${err.message}");
       } else if (err.type == DioErrorType.connectTimeout) {
-        print("connect timeout${err.message}");
+        print("connect timeout::${err.message}");
       } else if (err.type == DioErrorType.other) {
-        print("other${err.message}");
+        print("other::${err.message}");
       } else if (err.type == DioErrorType.receiveTimeout) {
-        print("receiveTimeout${err.message}");
+        print("receiveTimeout::${err.message}");
       } else if (err.type == DioErrorType.sendTimeout) {
-        print("sendTimeout${err.message}");
+        print("sendTimeout::${err.message}");
       }
     } catch (e) {
       print(e);

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:showp_owner_app/helpers/api_servics_links.dart';
 import 'package:showp_owner_app/services/api_service.dart';
@@ -24,6 +23,6 @@ class GetProductController extends GetxController {
     List prod = response;
 
     productList = List.from(prod.reversed);
-    print(productList.length);
+    // print(productList.length);
   }
 }

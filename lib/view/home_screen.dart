@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:showp_owner_app/controller/controller.dart';
 import 'package:showp_owner_app/controller/get_all_products_controller.dart';
+import 'package:showp_owner_app/controller/order_controller.dart';
 
 import 'package:showp_owner_app/helpers/const.dart';
 import 'package:showp_owner_app/helpers/enum_class.dart';
@@ -23,9 +24,10 @@ class HomeScreen extends StatelessWidget {
   bool isScroling = true;
 
   final _getProductsController = Get.put(GetProductController());
+  final _getAllOrders = Get.put(OrderController());
 
   List<Widget> screens = [
-    DashBoard(),
+    // DashBoard(),
     NewOrderScreen(),
     ProductScreen(),
     ReportScreen()
@@ -46,6 +48,7 @@ class HomeScreen extends StatelessWidget {
               ))
         ],
       ),
+
       // drawer: const DrawerItem(),
       body: GetBuilder<Controller>(
           id: "home",

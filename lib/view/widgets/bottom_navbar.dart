@@ -21,6 +21,7 @@ class BottomNavBar extends StatelessWidget {
         ),
         onTap: (value) {
           _controller.index = value;
+          print(_controller.index);
           _controller.update([
             "home",
             "navBar",
@@ -28,14 +29,14 @@ class BottomNavBar extends StatelessWidget {
         },
         currentIndex: _controller.index,
         items: [
-          BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.all(12),
-                child: FaIcon(
-                  FontAwesomeIcons.chartLine,
-                ),
-              ),
-              label: "Dashboard"),
+          // BottomNavigationBarItem(
+          //     icon: Padding(
+          //       padding: const EdgeInsets.all(12),
+          //       child: FaIcon(
+          //         FontAwesomeIcons.chartLine,
+          //       ),
+          //     ),
+          //     label: "Dashboard"),
           BottomNavigationBarItem(
               icon: Padding(
                 padding: const EdgeInsets.all(12),

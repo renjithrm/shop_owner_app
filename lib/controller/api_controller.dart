@@ -16,16 +16,17 @@ class ApiController extends GetxController {
   var storeResponseSignIn;
   StoreLoginResponse? loginResponse;
   // sign in store owner
-  Future<SignInResponse?>? storeSignIn({
-    required String firstname,
-    required String lastname,
-    required String storename,
-    required String cityname,
-    required String address,
-    required String email,
-    required String phonenumber,
-    required String password,
-  }) async {
+  Future<SignInResponse?>? storeSignIn(
+      {required String firstname,
+      required String lastname,
+      required String storename,
+      required String cityname,
+      required String address,
+      required String email,
+      required String phonenumber,
+      required String password,
+      required double latitude,
+      required double logitude}) async {
     isLoading = true;
     var profileImage;
     int phoneNo = int.parse(phonenumber);
@@ -41,6 +42,8 @@ class ApiController extends GetxController {
         storename: storename,
         city: cityname,
         address: address,
+        latitude: latitude,
+        longitude: logitude,
         email: email,
         phoneno: phoneNo,
         password: password,
