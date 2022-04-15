@@ -28,6 +28,7 @@ Widget titleText(String text) => Text(text,
 
 Widget text(String text, [double? size, Color? color = Colors.grey]) => Text(
       text,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.roboto(
         color: color,
         fontSize: size,

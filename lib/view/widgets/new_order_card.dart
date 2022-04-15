@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:showp_owner_app/controller/notification_controller.dart';
 import 'package:showp_owner_app/controller/order_controller.dart';
 import 'package:showp_owner_app/helpers/const.dart';
 import 'package:showp_owner_app/models/user_order_details.dart';
@@ -13,6 +14,7 @@ class NewOrderCard extends StatelessWidget {
   NewOrderCard({Key? key, required this.index, required this.dataModel})
       : super(key: key);
   final _getAllOrder = Get.find<OrderController>();
+  final _NotificationController = Get.put(NotificationController());
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +47,7 @@ class NewOrderCard extends StatelessWidget {
               children: <Widget>[
                 text("Address", 16, Colors.black),
                 Spacer(),
-                text(
-                    dataModel[index].address!.length < 20
-                        ? dataModel[index].address ?? "address"
-                        : ".........",
-                    16,
-                    Colors.black),
+                text(dataModel[index].address ?? "address", 16, Colors.black),
               ],
             ),
             Row(
@@ -97,6 +94,10 @@ class NewOrderCard extends StatelessWidget {
                       await _getAllOrder.acceptCancelOrder(
                           orderId: dataModel[index].id ?? "",
                           status: "accepted");
+                      _NotificationController.sentNotification(
+                          userId: dataModel[index].userid ?? "error",
+                          title: "G-Shop",
+                          body: "Your Order Accepted by shope owner");
                     },
                     child: Text("Accept")),
                 Spacer(),
@@ -110,6 +111,10 @@ class NewOrderCard extends StatelessWidget {
                       await _getAllOrder.acceptCancelOrder(
                           orderId: dataModel[index].id ?? "",
                           status: "cancelled");
+                      _NotificationController.sentNotification(
+                          userId: dataModel[index].userid ?? "error",
+                          title: "G-Shop",
+                          body: "Your Order cancelled by shope owner");
                     },
                     child: Text("Decline"))
               ],
